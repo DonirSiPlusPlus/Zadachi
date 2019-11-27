@@ -1,25 +1,28 @@
 #include <iostream>
 #include <math.h>
+#include <clocale>
 using namespace std;
 
 int main()
 {
+    setlocale (LC_ALL, "rus");
     double x1,y1,x2,y2,x3,y3,a,b,c,h,S;
+    cout<<"Введите координаты точек возведённые в квадрат"<<endl;
     cin>>x1>>y1>>x2>>y2>>x3>>y3;
-    
-    a=sqrt(pow((x3-x1),2)+pow((y3-y1),2));
-    b=sqrt(pow((x3-x2),2)+pow((y3-y2),2));
-    c=sqrt(pow((x2-x1),2)+pow((y2-y1),2));
-    
+
+    a=sqrt(pow((sqrt(x3)-sqrt(x1)),2)+pow((sqrt(y3)-sqrt(y1)),2));
+    b=sqrt(pow((sqrt(x3)-sqrt(x2)),2)+pow((sqrt(y3)-sqrt(y2)),2));
+    c=sqrt(pow((sqrt(x2)-sqrt(x1)),2)+pow((sqrt(y2)-sqrt(y1)),2));
+
     if(a==b && b==c && a!=0)
     {
         h=sqrt(a*a-pow(a/2,2));
         S=a*h/2;
         cout <<"h="<<h<<endl<<"d="<<a<<endl<<"S="<<S<< endl;
     }
-    
+
     else
-        cout<<"The triangle is non-equilateral or does not exist";
-        
+        cout<<"Треугольник неравносторонний или не существует";
+
     return 0;
 }
