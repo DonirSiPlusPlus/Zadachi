@@ -1,37 +1,43 @@
 #include <iostream>
 #include <math.h>
+#include <clocale>
 
 using namespace std;
 
 int main()
 {
+    setlocale (LC_ALL, "rus");
     double a, b, c, d, x1, x2;
     cin>>a>>b>>c;
 
     d=b*b-4*a*c;
     x1=(-b+sqrt(d))/(2*a);
     x2=(-b-sqrt(d))/(2*a);
-    
-    
+
     if(d>0)
         {
             if(x1>=0 && x2>=0)
                 cout<<"x1="<<sqrt(x1)<<endl<<"x2=-"<<sqrt(x1)<<endl<<"x3="<<sqrt(x2)<<endl<<"x4=-"<<sqrt(x2);
             else
                 {
-                    if(x1<0)
-                        cout<<"x1="<<sqrt(x2)<<endl<<"x2=-"<<sqrt(x2);
-                    else 
-                        cout<<"x1="<<sqrt(x1)<<endl<<"x2=-"<<sqrt(x1);
-                }        
-        }   
-    else 
-    {   
-        if(d=0)
-            cout<<"x1="<<sqrt(x1)<<endl<<"x2=-"<<sqrt(x1);
-        else    
-            cout<<"xЄ(-∞;∞)";
-    }
-    
+                    if(x1<0 && x2<0)
+                        cout<<"Корни комплексные";
+                    else
+                        {
+                            if(x1<0)
+                                cout<<"x1="<<sqrt(x2)<<endl<<"x2=-"<<sqrt(x2);
+                            else
+                                cout<<"x1="<<sqrt(x1)<<endl<<"x2=-"<<sqrt(x1);
+                        }
+                }
+        }
+    else
+        {
+            if(d=0)
+                cout<<"x1="<<sqrt(x1)<<endl<<"x2=-"<<sqrt(x1);
+            else
+                cout<<"xЄ(-∞;∞)";
+        }
+
     return 0;
 }
