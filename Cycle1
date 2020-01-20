@@ -1,0 +1,21 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int n,n5=0,ost,razr=1;
+    cin>>n;
+    
+    do
+    {
+        ost=n%5;
+        n5+=ost*razr;
+        razr*=10;
+        n/=5;
+    }
+    while(n>0); //(n>0)
+    
+    cout<<"n5="<<n5<<endl<<"sum="<<n5%10+n5/(razr/10);
+
+    return 0;
+}
