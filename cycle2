@@ -1,0 +1,20 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    double x, fact=1, a=4;
+    cin>>x;
+    
+    for(int k=2; k<6; k++)
+    {
+     x=fact/(a+x);
+     fact*=k;
+     a*=4;
+    }
+    
+    cout<<x;
+
+    return 0;
+}
