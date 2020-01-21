@@ -1,0 +1,26 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+int main()
+{
+    int m,n,k=0,a,b;
+    cin>>m>>n;
+
+    while(m<=n)
+    {
+        a=m;       //чтобы не изменилась переменная m
+        while(a>0)
+        {
+            a/=10;
+            k++;
+        }
+
+        b=pow(10,k); //в условии не функция pow не работает
+        if(m*m%b==m)
+            cout<<m<<'\t';
+        m++;
+        k=0;
+    }
+    return 0;
+}
