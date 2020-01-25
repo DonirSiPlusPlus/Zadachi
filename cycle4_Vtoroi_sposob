@@ -1,0 +1,29 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+int main()
+{
+    int m,n,a,b,flag;
+    cin>>m>>n;
+
+    for(int i=m; i<=n; i++)
+    {
+        a=i;
+        b=i*i;
+        flag=1;
+        while(a>0)
+        {
+            if(a%10!=b%10)  //проверка на автоморфность, сравнивается каждая цифра числа и его квадрата
+            {
+                flag=0;
+                break;
+            }
+            a/=10;
+            b/=10;
+        }
+        if(flag==1)
+            cout<<i<<' ';
+    }
+    return 0;
+}
