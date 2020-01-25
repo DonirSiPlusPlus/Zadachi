@@ -1,26 +1,23 @@
 #include <iostream>
-#include <math.h>
 using namespace std;
 
 int main()
 {
-    int m,n,k=0,a,b;
+    int m,n,k=1,a;
     cin>>m>>n;
 
-    while(m<=n)
+    for(int i=m;i<=n;i++)
     {
-        a=m;       //чтобы не изменилась переменная m
+        a=i;       //чтобы не изменилась переменная m
         while(a>0)
         {
             a/=10;
-            k++;
+            k*=10;
         }
 
-        b=pow(10,k); //в условии не функция pow не работает
-        if(m*m%b==m)
-            cout<<m<<'\t';
-        m++;
-        k=0;
+        if(i*i%k==i)  // проверка на автоморфность
+            cout<<i<<'\t';
+        k=1;
     }
     return 0;
 }
