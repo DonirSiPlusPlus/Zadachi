@@ -1,0 +1,26 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int x,x7,ost,razr(1),numb(0),k(0);
+    cin>>x;
+    
+    while(x>0)
+    {
+        ost=x%7;
+        x7+=ost*razr;
+        razr*=10;
+        x/=7;
+        
+        k++; //счётчик количества цифр в пятиричном числе
+        
+        if(ost<=x%5)  //сравнение каждой цифры в пятиричном числе
+            numb=k-1;   //количество цифр перед цифрой с наим значением
+    }
+    
+    cout<<k-numb;
+
+    return 0;
+}
