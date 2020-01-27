@@ -1,0 +1,28 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+int main()
+{
+    double x, mn, rast; 
+    int numb(1), count(1);
+    
+    cin>>x;
+    rast=fabs(fabs(x)-count); //расстояние от числа до его номера
+    mn=rast;                    //минимальное расстояние среди элементов (от числа до его номера)
+    
+    while(x!=0)
+    {
+        rast=fabs(fabs(x)-count); 
+        if(rast<mn)  //сравнение нового расстояния со старым
+        {
+            mn=rast; 
+            numb=count;             //номер числа самого близкого к своему номеру
+        }
+        cin>>x;
+        count++;            //порядковый номер числа в последовательности
+    }
+    
+    cout<<numb; 
+    return 0;
+}
