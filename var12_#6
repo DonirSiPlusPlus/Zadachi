@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    double x, sum(0), comp(1);
+    setlocale(LC_ALL, "Russian");
+    
+    do
+    {
+        cin>>x;
+        if(x>0)
+            sum+=x;
+        else
+            if(x<0)     //чтобы не учитывался ноль
+                comp*=x;
+    }
+    while(x);
+    
+    cout<<"Сумма положительных = "<<sum<<endl<<"Произведение отрицательных = "<<comp;
+    return 0;
+}
