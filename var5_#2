@@ -1,0 +1,25 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+int main()
+{
+    const double E=0.0001; 
+    double x, slag, sum(0);
+    int a(1);
+    
+    cin>>x;
+    slag=x;
+    
+    while(fabs(slag)>=E)    
+    {
+        sum+=slag;          //сумма ряда
+        slag*=-slag*x/a;  //слагаемое ряда
+        a++;                //делитель слагаемого
+        cout<<sum<<endl;
+    }
+    
+    cout<<"sum = "<<sum;
+
+    return 0;
+}
