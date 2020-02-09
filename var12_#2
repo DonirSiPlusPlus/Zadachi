@@ -1,0 +1,27 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+int main()
+{
+    const double E=0.0001; 
+    double x, slag, sum(0);
+    int a(3), fact1(1), fact2(2);
+    
+    cin>>x;
+    slag=x;
+    
+    while(fabs(slag)>=E)    
+    {
+        sum+=slag;          //сумма ряда
+        slag=-pow(x,a)*fact1/(a*fact2);  //слагаемое ряда
+        fact1*=a;           //нечетный факториал (числитель)
+        fact2*=a+1;         //чётный факториал (знаменатель)
+        a+=2;                //доп множитель в знаменателе
+        cout<<sum<<endl;    //вывод каждого накопляемой суммы
+    }
+    
+    cout<<"sum = "<<sum;
+
+    return 0;
+}
