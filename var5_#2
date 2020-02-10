@@ -14,9 +14,9 @@ int main()
     while(fabs(slag)>=E)    
     {
         sum+=slag;          //сумма ряда     
-        slag=-pow(x,a)/a;  //слагаемое ряда     
+        slag*=-x*(a-1)/a;  //слагаемое ряда     
         a++;                //делитель слагаемого
-        cout<<sum<<endl;    
+        cout<<slag<<endl;    //вывод каждого слагаемого
     }
     
     cout<<"sum = "<<sum;
