@@ -9,9 +9,9 @@ int main()
     
     for(int k=2; k<=6; k++)
     {
-     x=fact/(a+x);
-     fact*=k;
-     a*=4;
+        x=fact/(a+x);
+        fact*=k;
+        a*=4;
     }
     
     cout<<x;
