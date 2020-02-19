@@ -11,7 +11,7 @@ int main()
     cin>>x;
     slag=x;
     
-    while(fabs(slag)>=E)    
+    while(fabs(slag)>E)    
     {
         sum+=slag;          //сумма ряда
         slag*=-x*x*(a-2)*(a-2)/(a*(a-1));  //слагаемое ряда
