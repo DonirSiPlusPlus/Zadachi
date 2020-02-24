@@ -2,9 +2,9 @@
 using namespace std;
 int main()
 {
-    int mas[99];
-    int n, sum(0), k(0), nomer1(-1), nomer2(-1);
-    double sred;
+    int mas[100];
+    int n, nomer1(-1), nomer2(-1);
+    double sum(0), k(0);   
     cin>>n;
 
     cout<<"Massiv"<<endl;
@@ -27,10 +27,7 @@ int main()
             k++;            //количество цифр
         }
 
-    if(sum)
-    {
-        sred=sum/(k-1);     //среднее значение
-        cout<<"Srednee = "<<sred;
-    }
+    if(sum)     //чтобы не выводить вместе с "NO"
+        cout<<"Srednee = "<<sum/(k-1);  //вывод среднего значения
     return 0;
 }
