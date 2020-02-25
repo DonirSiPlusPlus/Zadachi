@@ -1,0 +1,53 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    int mas[100];
+    int n, flag(0);
+    cin>>n;
+
+    cout<<"Massiv"<<endl;
+    for(int i=0; i<n; i++)
+        cin>>mas[i];
+
+    if(mas[0]%2==0)         //определение четности первого элемента (чётный)
+        for(int i=0; i<n; i+=2)     //цикл для проверки всех четных чисел
+        {
+            if(mas[i]%2!=0)     //поиск нечетного числа
+            {
+                cout<<"NO";
+                flag++;         //флажок для вывода YES
+                break;          //выход из цикла при нечетном числе
+            }
+            if(i>=n)        //когда i достигнет предела
+                for(int j=1; j<n; j+=2) //цикл для провеки всех нечетных чисел
+                    if(mas[j]%2==0)
+                    {
+                        cout<<"NO";
+                        flag++;
+                        break;
+                    }   
+        }
+    else                //первый элемент нечетный
+        for(int i=0; i<n; i+=2)
+        {
+            if(mas[i]%2==0)
+            {
+                cout<<"NO";
+                flag++;
+                break;
+            }
+            if(i>=n)
+                for(int j=1; j<n; j+=2)
+                    if(mas[j]%2!=0)
+                    {
+                        cout<<"NO";
+                        flag++;
+                        break;
+                    }   
+        }
+        
+    if(flag==0)     
+        cout<<"YES";    
+    return 0;
+}
