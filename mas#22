@@ -1,0 +1,29 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+int main()
+{
+    int x[100], y[100], n, numb1, numb2;
+    double mx(-1), rast;
+    cin>>n;
+    cout<<"Coordinats"<<endl;
+    
+    for(int i=0; i<n; i++){
+        cout<<'('; cin>>x[i]>>y[i]; cout<<')';}
+            
+    for(int i=0; i<n; i++)
+        for(int j=n-1; j>i; j--)    
+        {
+            rast=sqrt(pow(x[i]-x[j],2)+pow(y[i]-y[j],2));    //расстояние между точками
+            cout<<i<<' '<<j<<' '<<rast<<endl;
+            if(rast>mx)         
+            {
+                mx=rast;        //макс расстояние между точками
+                numb1=i;        //номер первой точки
+                numb2=j;        //номер второй точки
+            }
+        }
+    
+    cout<<"Nomera tochek: "<<numb1<<", "<<numb2;
+    return 0;
+}
