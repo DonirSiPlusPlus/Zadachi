@@ -1,9 +1,10 @@
 #include <iostream>
+#include <math.h>
 using namespace std;
 
 int main()
 {
-    int mas[100], n, flag(0), step;
+    int mas[100], n, flag(0), step(1), osnova(0);
     cin>>n;
     cout<<"Massiv"<<endl;
     for(int i=0; i<n; i++)
@@ -11,21 +12,21 @@ int main()
     
     for(int i=0; i<n; i++)
     {
-        step=mas[i];        //можно не делать нврн
-        while(step>0)
+        while(osnova<mas[i])
         {
-            if(step%2==1)   //цикличeская проверка на степень двойки
-                break;      
-            step/=2;        //подгтовка к след иттерации
-            if(step==0)     //если найдена степень двойки
-                flag++;      
+            osnova=pow(2, step);        //возведение двойки в степень
+            step++;                     //увеличение степени
+            if(mas[i]==osnova)          //если число в последовательности равно степени двойки
+                flag++;                 //кол-во таких чисел (флажок)
         }
+        step=1;                         //нач знач для след иттерации
+        osnova=0;                       //нач знач для след иттерации
     }
     
     if(flag>1)              //если степеней двойки больше чем одна
-        cout<<"YES";
+        cout<<"YES "<<flag;
     else
-        cout<<"NO";
+        cout<<"NO "<<flag;
 
     return 0;
 }
