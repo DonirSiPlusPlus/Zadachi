@@ -1,0 +1,31 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+int main()
+{
+    int mas[100], n, last, sdvig, first;
+    cin>>n;
+    sdvig=n;
+    cout<<"Massiv"<<endl;
+    for(int i=0; i<n; i++)
+        cin>>mas[i];
+        
+    for(int i=0; i<n; i++)
+    {
+        if(fabs(mas[i]/10)>0)            //проверка на неоднозначность
+        {
+            last=mas[i]%10;              //последняя цифра числа
+            first=mas[i];
+            while(fabs(first)>9)         //вычисление первой цифры
+                first/=10;               //уменьшение числа
+            if(last==first)              //сравнение последней и первой цифры
+            {
+                mas[i]=mas[i+1];         //удаление элемента (сдвиг)
+                sdvig--;                 //количество элементов после сдвига
+            }
+        }
+    }
+    for(int i=0; i<sdvig; i++)
+        cout<<mas[i]<<' ';
+    return 0;
+}
