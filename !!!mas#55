@@ -10,7 +10,7 @@ int main()
     for(int i=0; i<n; i++)
         cin>>mas[i];
         
-    for(int i=0; i<n; i++)
+    for(int i=0; i<sdvig; i++)
     {
         if(fabs(mas[i]/10)>0)            //проверка на неоднозначность
         {
