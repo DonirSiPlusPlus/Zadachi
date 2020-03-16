@@ -1,34 +1,32 @@
 #include <iostream>
-#include <stdlib.h>
-#include <iomanip>
 using namespace std;
 int main()
 {
-    int mas[100][100], n, m, naib, a, b;
+    int mas[100][100];  
+    int n, m; 
+    double naib=0.5;
     cin>>n>>m;
+    for(int i=0; i<n; i++)
+        for(int j=0; j<m; j++)
+            cin>>mas[i][j];
     
     for(int i=0; i<n; i++)
-    {    
         for(int j=0; j<m; j++)
-        {
-            mas[i][j]=rand()21-10;  //[-10;10]
-            cout<<setw(3)<<mas[i][j];
-        }
-        cout<<endl;
-    }
-    //naib=mas[0][0];
-    for(int i=0; i<n; i++)
-        for(int j=0; j<m; j++)
-        {
-            //a=i;
-            //b=j;
-            for(int k=i; k<n; k++)
-                for(int f=j; f<m; f++)
+            for(int k=0; k<n; k++)
+                for(int f=j+1; f<m; f++)
                     if(mas[i][j]==mas[k][f])
-                        naib=mas[i][j];
-            for(int k=i; k<n; k++)
-                for(int f=j; f<m; f++)
-                    if(mas[i][j]==mas[k][f])
-        }
+                        {
+                            naib=mas[i][j];
+                            break;
+                        }
+                
+    if(naib!=0.5)    
+        for(int i=0; i<n; i++)
+            for(int j=0; j<m; j++)
+                for(int k=i+1; k<n; k++)
+                    for(int f=j+1; f<m; f++)
+                        if(mas[i][j]==mas[k][f] && mas[k][f]>naib)
+                            naib=mas[i][j];
+    cout<<naib;
     return 0;
 }
