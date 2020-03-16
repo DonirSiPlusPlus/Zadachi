@@ -4,7 +4,7 @@
 using namespace std;
 int main()
 {
-    int mas[100][100], n, m, naib, maybe;
+    int mas[100][100], n, m, naib, a, b;
     cin>>n>>m;
     
     for(int i=0; i<n; i++)
@@ -16,10 +16,19 @@ int main()
         }
         cout<<endl;
     }
-    
+    //naib=mas[0][0];
     for(int i=0; i<n; i++)
         for(int j=0; j<m; j++)
-            if(mas[i][]==mas)
-                    
+        {
+            //a=i;
+            //b=j;
+            for(int k=i; k<n; k++)
+                for(int f=j; f<m; f++)
+                    if(mas[i][j]==mas[k][f])
+                        naib=mas[i][j];
+            for(int k=i; k<n; k++)
+                for(int f=j; f<m; f++)
+                    if(mas[i][j]==mas[k][f])
+        }
     return 0;
 }
