@@ -12,19 +12,19 @@ int main()
         cin>>mas2[i];
         
     for(int i=0; i<n; i++)
-    {
-        for(int j=0; j<m; j++)
-        {
-            if(mas[i]==mas[j])
-                break;
-            else
-                flag++;
-        }
-        if(flag==m)
-            cout<<mas[i];
-        flag(0);
-    }   
-    cout<<"Hello World";
-
+        for(int j=1; j<m; j++)
+            if(mas1[i]==mas1[j] || mas2[i]==mas2[j])
+                if(mas1[i]==mas1[j])
+                {
+                    for(int k=i; k<n; k++)
+                        mas1[k]=mas1[k+1];
+                    n--;
+                }
+                else
+                {
+                    for(int k=i; k<m; k++)
+                        mas2[k]=mas2[k+1];
+                    m--;
+                }
     return 0;
 }
