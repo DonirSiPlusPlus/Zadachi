@@ -2,10 +2,9 @@
 using namespace std;
 int main()
 {
-    int mas[100], arr[100], n, m, flag(0);
+    int mas[100], arr[100], n, m, flag, Povtor;
     cin>>n>>m;
     cout<<"Massiv"<<endl;
-    
     for(int i=0; i<n; i++)
         cin>>mas[i];
     for(int i=0; i<m; i++)
@@ -13,12 +12,40 @@ int main()
         
     for(int i=0; i<n; i++)
     {
-        for(int k=0; k<i; k++)
-            if(mas[i]==mas[k])
-                break;   
-        for(int j=0; j<m; j++)
-            if(mas[i]==arr[j])
-    
+        flag=0;
+        Povtor=0;
+        for(int k=0; k<i; k++)            //поиск совпадений в одном массиве
+            if(mas[k]==mas[i])
+                { flag++; break; }        //флажок совпадений в одном массиве и остановка поиска
+        if(!flag)                         //(flag==0) чтобы не проверять повторяющиеся элементы массива
+            for(int j=0; j<m; j++)
+            {    
+                if(mas[i]==arr[j])
+                { Povtor=1; break; }      //найдено совпадение во втором массиве и остановка поиска   
+            }
+        else
+            Povtor=1;                     //чтобы не выводить элемент
+        if(!Povtor)                       //(Povtor==0)
+            cout<<mas[i]<<' ';
+    }
+    cout<<endl;
+    for(int i=0; i<m; i++)
+    {
+        flag=0;
+        Povtor=0;
+        for(int k=0; k<i; k++)            //поиск совпадений в одном массиве
+            if(arr[k]==arr[i])
+                { flag++; break; }        //флажок совпадений в одном массиве и остановка поиска
+        if(!flag)                         //(flag==0) чтобы не проверять повторяющиеся элементы массива
+            for(int j=0; j<n; j++)
+            {    
+                if(arr[i]==mas[j])
+                { Povtor=1; break; }      //найдено совпадение во втором массиве и остановка поиска   
+            }
+        else
+            Povtor=1;                     //чтобы не выводить элемент
+        if(!Povtor)                       //(Povtor==0)
+            cout<<arr[i]<<' ';
     }
     return 0;
 }
