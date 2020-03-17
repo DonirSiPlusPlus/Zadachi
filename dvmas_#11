@@ -2,31 +2,44 @@
 using namespace std;
 int main()
 {
-    int mas[100][100];  
-    int n, m; 
-    double naib=0.5;
+    int n,m;
     cin>>n>>m;
-    for(int i=0; i<n; i++)
-        for(int j=0; j<m; j++)
+    cout<<"Massiv"<<endl;
+    int mas[n][m];
+    int i,j;
+    for (i=0;i<n;i++)
+        for (j=0;j<m;j++)
             cin>>mas[i][j];
-    
-    for(int i=0; i<n; i++)
-        for(int j=0; j<m; j++)
-            for(int k=0; k<n; k++)
-                for(int f=j+1; f<m; f++)
-                    if(mas[i][j]==mas[k][f])
-                        {
-                            naib=mas[i][j];
-                            break;
-                        }
-                
-    if(naib!=0.5)    
-        for(int i=0; i<n; i++)
-            for(int j=0; j<m; j++)
-                for(int k=i+1; k<n; k++)
-                    for(int f=j+1; f<m; f++)
-                        if(mas[i][j]==mas[k][f] && mas[k][f]>naib)
-                            naib=mas[i][j];
-    cout<<naib;
+
+    int flag(0), naib, stroka, stolb;
+    for (i=0;i<n;i++)
+    {
+        for(j=0;j<m;j++)
+        {
+            stroka=i;            //фиксирование значения
+            stolb=j;             //фиксирование значения
+            while(stroka<n)      //пока есть строки
+            {
+                stolb++;            //переход на след столбец
+                if(stolb==m)        //проверка на конец строки
+                {
+                    stroka++;        //переход на след строку
+                    stolb=0;
+                }
+
+                if(mas[i][j]==mas[stroka][stolb])   //поиск совпадений
+                    if(!flag)                       //флажок если найдены совпадения(однократное условие)
+                    {
+                        naib=mas[i][j];
+                        flag=1;
+                        break;
+                    }
+                    else
+                        naib=max(naib, mas[i][j]);  //сравнение значений совпадающих элементов
+            }
+        }
+    }
+    if(flag)        //flag>0
+        cout<<naib;
     return 0;
 }
