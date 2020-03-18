@@ -14,18 +14,18 @@ int main()
             cout<<setw(5)<<mas[i][j];
         }
         cout<<endl;
-        naibStrok+=mas[0][i];
-        naimStolb+=mas[i][0];
+        naibStrok+=mas[0][i];                   //вычисление суммы нулевой строки
+        naimStolb+=mas[i][0];                   //вычисление суммы нулевого столбца    
     }
     cout<<"------------------------------------------------------------------"<<endl;
-    for(int i=1; i<n; i++)
+    for(int i=1; i<n; i++)                  
     {    
         for(int j=1; j<n; j++)
         {
-            sumStrok+=mas[i][j];
-            sumStolb+=mas[j][i];
+            sumStrok+=mas[i][j];                //вычисление суммы строки
+            sumStolb+=mas[j][i];                //вычисление суммы столбца
         }
-        if(sumStrok>naibStrok || sumStolb<naimStolb)
+        if(sumStrok>naibStrok || sumStolb<naimStolb)        //если сумма элементов строки больше макс значения или меньше мин столбца
             if(sumStrok>naibStrok)
                 {  naibStrok=sumStrok; stroka=i; }
             else
@@ -33,15 +33,15 @@ int main()
                     { naimStolb=sumStolb; stolb=i; }
     }
     
-    for(int i=stroka; i<n; i++)
+    for(int i=stroka; i<n; i++)             //удаление строки с макс суммой элементов
         for(int j=0; j<n; j++)
             mas[i][j]=mas[i+1][j];
                 
-    for(int i=stolb; i<n; i++)
+    for(int i=stolb; i<n; i++)              //удаление столбца с мин суммой элементов
         for(int j=0; j<n; j++)
             mas[j][i]=mas[j][i+1];        
 
-    for(int i=0; i<n-1; i++)
+    for(int i=0; i<n-1; i++)                //вывод матрицы с удаленной строкой и столбцом
     {
         for(int j=0; j<n-1; j++)
             cout<<setw(5)<<mas[i][j];
