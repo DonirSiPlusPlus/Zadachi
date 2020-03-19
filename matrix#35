@@ -1,0 +1,18 @@
+#include <iostream>
+#include <stdlib.h>
+#include <iomanip>
+using namespace std;
+int main()
+{
+    unsigned int mas[100][100], n, m;
+    for(int i=0; i<n; i++)                  //заполнение матрицы
+    {   
+        for(int j=0; j<m; j++)
+        {
+            mas[i][j]=rand()%35;            //[1; 35]
+            cout<<setw(5)<<mas[i][j];
+        }
+        cout<<endl;        
+    }
+    return 0;
+}
