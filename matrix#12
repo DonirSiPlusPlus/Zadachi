@@ -4,41 +4,45 @@
 using namespace std;
 int main()
 {
-    int n(10);
-    int mas[n][n], sumStrok(0), stroka, stolb, sumStolb(0), naimStolb(0), naibStrok(0);
-    for(int i=0; i<n; i++)
-    {
+    int n(10), mas[n][n], sumStrok(0), sumStolb(0), naimStolb(0), naibStrok(0), stroka, stolb, sum;
+    for(int i=0; i<n; i++)                  //заполнение матрицы
+    {   
+        sum=0;                              //подготовка к иттерации
         for(int j=0; j<n; j++)
         {
             mas[i][j]=rand()%21-10;         //[-10 10]
+            sum+=mas[i][j];                 //сумма строк
             cout<<setw(5)<<mas[i][j];
         }
-        cout<<endl;
+        cout<<'\t'<<"sum = "<<sum<<endl;        //вывод суммы строк
         naibStrok+=mas[0][i];                   //вычисление суммы нулевой строки
         naimStolb+=mas[i][0];                   //вычисление суммы нулевого столбца    
     }
-    cout<<"------------------------------------------------------------------"<<endl;
-    for(int i=1; i<n; i++)                  
+    cout<<'\n'<<endl;
+    for(int i=1; i<n; i++)                      //(i=1) чтобы снова не считать нулевую строку и столбец      
     {    
-        for(int j=1; j<n; j++)
+        for(int j=0; j<n; j++)
         {
             sumStrok+=mas[i][j];                //вычисление суммы строки
             sumStolb+=mas[j][i];                //вычисление суммы столбца
         }
         if(sumStrok>naibStrok || sumStolb<naimStolb)        //если сумма элементов строки больше макс значения или меньше мин столбца
             if(sumStrok>naibStrok)
-                {  naibStrok=sumStrok; stroka=i; }
+                {  naibStrok=sumStrok; stroka=i; }          //сохранение новых значений
             else
                 if(sumStolb<naimStolb)
-                    { naimStolb=sumStolb; stolb=i; }
+                    { naimStolb=sumStolb; stolb=i; }        //сохранение новых значений
+        cout<<setw(5)<<sumStolb;                            //вывод суммы столбцов
+        sumStrok=0;                             //подготовка к след иттерации
+        sumStolb=0;                             //подготовка к след иттерации
     }
-    
-    for(int i=stroka; i<n; i++)             //удаление строки с макс суммой элементов
-        for(int j=0; j<n; j++)
+    cout<<endl<<"------------------------------------------------------------------"<<endl;
+    for(int i=stroka; i<n-1; i++)             //удаление строки с макс суммой элементов
+        for(int j=0; j<n-1; j++)
             mas[i][j]=mas[i+1][j];
-                
-    for(int i=stolb; i<n; i++)              //удаление столбца с мин суммой элементов
-        for(int j=0; j<n; j++)
+  
+    for(int i=stolb; i<n-1; i++)              //удаление столбца с мин суммой элементов
+        for(int j=0; j<n-1; j++)
             mas[j][i]=mas[j][i+1];        
 
     for(int i=0; i<n-1; i++)                //вывод матрицы с удаленной строкой и столбцом
