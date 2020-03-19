@@ -1,3 +1,4 @@
+
 #include <iostream>
 using namespace std;
 int main()
@@ -9,11 +10,11 @@ int main()
         cin>>mas[i];
     for(int i=0; i<m; i++)
         cin>>arr[i];
-        
+    cout<<endl;    
     for(int i=0; i<n; i++)
     {
-        flag=0;
-        Povtor=0;
+        flag=0;                           //подготовка к иттерации
+        Povtor=0;                         //подготовка к иттерации
         for(int k=0; k<i; k++)            //поиск совпадений в одном массиве
             if(mas[k]==mas[i])
                 { flag++; break; }        //флажок совпадений в одном массиве и остановка поиска
@@ -21,14 +22,14 @@ int main()
             for(int j=0; j<m; j++)
             {    
                 if(mas[i]==arr[j])
-                { Povtor=1; break; }      //найдено совпадение во втором массиве и остановка поиска   
+                    { Povtor=1; break; }  //найдено совпадение во втором массиве и остановка поиска   
             }
         else
             Povtor=1;                     //чтобы не выводить элемент
         if(!Povtor)                       //(Povtor==0)
             cout<<mas[i]<<' ';
     }
-    cout<<endl;
+    //то же самое со 2-ым массивом
     for(int i=0; i<m; i++)
     {
         flag=0;
@@ -40,7 +41,7 @@ int main()
             for(int j=0; j<n; j++)
             {    
                 if(arr[i]==mas[j])
-                { Povtor=1; break; }      //найдено совпадение во втором массиве и остановка поиска   
+                    { Povtor=1; break; }  //найдено совпадение во втором массиве и остановка поиска   
             }
         else
             Povtor=1;                     //чтобы не выводить элемент
