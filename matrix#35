@@ -4,7 +4,7 @@
 using namespace std;
 int main()
 {
-    unsigned int mas[100][100], n, m;
+   int mas[100][100], n, m, fib1(0), fib2(1), count(0);
     cin>>n>>m;
     cout<<"Matrix"<<endl;
     for(int i=0; i<n; i++)                  //заполнение матрицы
@@ -16,6 +16,26 @@ int main()
         }
         cout<<endl;        
     }
-    
+    cout<<endl;
+    for(int i=0; i<n; i++)      
+        for(int j=0; j<m; j++)
+        {    
+            while(fib2<mas[i][j])                       //вычисление чисел фибоначи пока они меньше элемента
+            {
+                fib1+=fib2;                                     //след число
+                fib2+=fib1;                                     //след через два шага
+                if(fib1>=mas[i][j])                             //остановка если одно из чисел больше или равно элементу
+                    break;                                      
+            }
+            if(mas[i][j]==fib1 || mas[i][j]==fib2)              //если элемент равен одному из чисел фибоначчи 
+            {
+                cout<<'('<<i<<"; "<<j<<')'<<' ';            
+                count++;                                        //счетчик чисел фибоначии
+            }
+            fib1=0;                             //подготовка к след иттерации
+            fib2=1;                             //подготовка к след иттерации
+        }
+    cout<<endl<<count;    
     return 0;
 }
+
