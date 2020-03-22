@@ -11,9 +11,10 @@ int main()
     
     for(int i=0; i<n-1; i++)
         for(int j=i+1; j<n-1; j++)
-            if(fabs(mas[i]%2)==fabs(mas[j]%2) && mas[j]<=mas[i])    //самое маленькое число двигается влево(пузырек)
-                swap(mas[i], mas[j]);                               //перестановка элементов одной четности
+            if(fabs(mas[i]%2)==fabs(mas[j]%2) && mas[j]<=mas[i])    ырек)
+                swap(mas[i], mas[j]);                              
         
     for(int i=0; i<n; i++)
         cout<<mas[i]<<' ';           
     return 0;
+}
