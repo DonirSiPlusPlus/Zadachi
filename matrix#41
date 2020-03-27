@@ -1,0 +1,33 @@
+#include <iostream>
+#include <stdlib.h>
+#include <iomanip>
+using namespace std;
+int main()
+{
+    int mas[100][100], n, naib, f;
+    cin>>n;
+    f=n;
+    cout<<"Matrix"<<endl;
+    for(int i=0; i<n; i++)                  //заполнение матрицы
+    {   
+        for(int j=0; j<n; j++)
+        {
+            mas[i][j]=rand()%200-100;            //[-99; 99]
+            cout<<setw(5)<<mas[i][j];
+        }
+        cout<<endl;        
+    }
+    naib=mas[0][0];
+    for(int i=0; i<n; i++)
+    {
+        for(int j=0; j<n; j++)
+            if(mas[i][j]>naib)
+            {    
+                swap(mas[i][j], mas[n-f][n-f]);
+                naib=mas[i][j];
+                f--;
+            }    
+        
+       
+    }            
+}
