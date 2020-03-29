@@ -17,29 +17,28 @@ int main()
         cout<<endl;        
     }
     cout<<endl<<endl;        
-    for(int i=0; i<n; i++)
-    {    
-        for(int j=0; j<n; j++)
-            for(int k=i; k<n; k++)
-                if(k==i)
+    for(int i=0; i==0; i++)                          //фиксирование строки элемента ( (i==0)-перестановка ТОЛЬКО в первую строку)
+        for(int j=0; j<n; j++)                          //фиксирование столбца элемента
+            for(int k=i; k<n; k++)                          //проход по матрице для сортировки
+                if(k==i)                                        //если текущий элемент находится в i строке
                 {
-                    for(int h=j+1; h<n; h++)
+                    for(int h=j+1; h<n; h++)                        
                         if(mas[k][h]>mas[i][j])
-                            swap(mas[i][j], mas[k][h]);
+                            swap(mas[i][j], mas[k][h]);             //перестановка самых больших по величине элементов в 1-ую строку методом пузырька
                 }
-                else
-                    for(int h=0; h<n; h++)
+                else                                                //если текущий элемент НЕ находится в i строке
+                    for(int h=0; h<n; h++)                          
                         if(mas[k][h]>mas[i][j])
-                            swap(mas[i][j], mas[k][h]);
-        //diag++;
-    }
+                            swap(mas[i][j], mas[k][h]);             //перестановка самых больших по величине элементов в 1-ую строку методом пузырька
+    
     for(int i=0; i==0; i++)
         for(int j=1; j<n; j++)
         {
-            swap(mas[i][j], mas[diag][diag]);
+            swap(mas[i][j], mas[diag][diag]);                       //перестановка самых больших по величине элементов на глав диагональ
             diag++;   
-        }    
-    for(int i=0; i<n; i++)
+        } 
+    
+    for(int i=0; i<n; i++)                      //вывод матрицы
     {    
         for(int j=0; j<n; j++)
             cout<<setw(5)<<mas[i][j];
@@ -47,3 +46,4 @@ int main()
     }
     return 0;
 }
+
