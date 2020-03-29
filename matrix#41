@@ -4,7 +4,7 @@
 using namespace std;
 int main()
 {
-    int mas[100][100], n, diag(0);
+    int mas[100][100], n, diag(1);
     cin>>n;
     cout<<"Matrix"<<endl;
     for(int i=0; i<n; i++)                  //заполнение матрицы
@@ -25,15 +25,20 @@ int main()
                 {
                     for(int h=j+1; h<n; h++)
                         if(mas[k][h]>mas[i][j])
-                            swap(mas[diag][diag], mas[k][h]);
+                            swap(mas[i][j], mas[k][h]);
                 }
                 else
                     for(int h=0; h<n; h++)
                         if(mas[k][h]>mas[i][j])
-                            swap(mas[diag][diag], mas[k][h]);
-        diag++;
-    }                        
-                    
+                            swap(mas[i][j], mas[k][h]);
+        //diag++;
+    }
+    for(int i=0; i==0; i++)
+        for(int j=1; j<n; j++)
+        {
+            swap(mas[i][j], mas[diag][diag]);
+            diag++;   
+        }    
     for(int i=0; i<n; i++)
     {    
         for(int j=0; j<n; j++)
