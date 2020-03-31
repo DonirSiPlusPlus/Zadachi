@@ -1,0 +1,55 @@
+#include <iostream>
+#include <math.h>
+#include <stdlib.h>
+#include <iomanip>
+using namespace std;
+int main()
+{
+    int n(7), m(5), mas[n][m], mx, mn, stolbMax(0), stolbMin(0);
+    cout<<"Matrix"<<endl;
+    for(int i=0; i<n; i++)                       //заполнение матрицы
+    {   
+        for(int j=0; j<m; j++)
+        {
+            mas[i][j]=rand()%200-100;            //[-99; 99]
+            cout<<setw(5)<<mas[i][j];
+        }
+        cout<<endl;        
+    }
+    mx=mas[0][0]; mn=mas[0][0];
+    cout<<endl<<endl;        
+    for(int i=0; i<n; i++)                          
+    {    
+        for(int j=0; j<m; j++)
+            if(mas[i][j]>mx)
+            {
+                mx=mas[i][j];
+                stolbMax=j;
+            }
+            else
+                if(mas[i][j]<mn)
+                {
+                    mn=mas[i][j];
+                    stolbMin=j;
+                }
+                
+        for(int j=stolbMax; j==stolbMax; j++)
+            for(int k=0; k<n; k++)
+                if(mas[k][j]<stolbMax)
+    }           
+                
+                
+                
+                
+                
+                
+                
+                        
+    for(int i=0; i<n; i++)                          //вывод матрицы      
+    {   
+        for(int j=0; j<m; j++)
+            cout<<setw(5)<<mas[i][j];
+        cout<<endl;        
+    }                    
+    return 0;
+}
