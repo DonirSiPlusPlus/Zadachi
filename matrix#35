@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <iomanip>
+#include <time.h>
 using namespace std;
 int main()
 {
@@ -8,6 +9,7 @@ int main()
     int mas[100][100], n, m, fib1(1), fib2(1), count(0);
     cin>>n>>m;
     cout<<"Matrix"<<endl;
+    srand(time(NULL));
     for(int i=0; i<n; i++)                  //заполнение матрицы
     {   
         for(int j=0; j<m; j++)
@@ -31,12 +33,12 @@ int main()
             if(mas[i][j]==fib1 || mas[i][j]==fib2)              //если элемент равен одному из чисел фибоначчи 
             {
                 cout<<'('<<i<<"; "<<j<<')'<<' ';            
-                count++;                                        //счетчик чисел фибоначии
+                count++;                                        //счетчик чисел фибоначи
             }
             fib1=1;                             //подготовка к след иттерации
             fib2=1;                             //подготовка к след иттерации
         }
-    cout<<endl<<"Количество чисел = "<<count;    
+    cout<<endl<<"Количество чисел фибоначи = "<<count;    
     return 0;
 }
 
