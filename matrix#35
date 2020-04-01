@@ -4,14 +4,15 @@
 using namespace std;
 int main()
 {
-   int mas[100][100], n, m, fib1(1), fib2(1), count(0);
+    setlocale(LC_ALL, "Russian");
+    int mas[100][100], n, m, fib1(1), fib2(1), count(0);
     cin>>n>>m;
     cout<<"Matrix"<<endl;
     for(int i=0; i<n; i++)                  //заполнение матрицы
     {   
         for(int j=0; j<m; j++)
         {
-            mas[i][j]=rand()%35;            //[1; 35]
+            mas[i][j]=rand()%35;            //[0; 35]
             cout<<setw(5)<<mas[i][j];
         }
         cout<<endl;        
@@ -20,7 +21,7 @@ int main()
     for(int i=0; i<n; i++)      
         for(int j=0; j<m; j++)
         {    
-            while(fib2<mas[i][j])                       //вычисление чисел фибоначи пока они меньше элемента
+            while(fib2<mas[i][j])                               //вычисление чисел фибоначи
             {
                 fib1+=fib2;                                     //след число
                 fib2+=fib1;                                     //след через два шага
@@ -35,7 +36,7 @@ int main()
             fib1=1;                             //подготовка к след иттерации
             fib2=1;                             //подготовка к след иттерации
         }
-    cout<<endl<<count;    
+    cout<<endl<<"Количество чисел = "<<count;    
     return 0;
 }
 
