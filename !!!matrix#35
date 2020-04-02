@@ -5,40 +5,46 @@
 using namespace std;
 int main()
 {
-    setlocale(LC_ALL, "Russian");
-    int mas[100][100], n, m, fib1(1), fib2(1), count(0);
-    cin>>n>>m;
+    int mas[100][100], n, diag(1);
+    cin>>n;
     cout<<"Matrix"<<endl;
     srand(time(NULL));
     for(int i=0; i<n; i++)                  //заполнение матрицы
     {   
-        for(int j=0; j<m; j++)
+        for(int j=0; j<n; j++)
         {
-            mas[i][j]=rand()%35;            //[0; 35]
+            mas[i][j]=rand()%200-100;            //[-99; 99]
             cout<<setw(5)<<mas[i][j];
         }
         cout<<endl;        
     }
-    cout<<endl;
-    for(int i=0; i<n; i++)      
-        for(int j=0; j<m; j++)
-        {    
-            while(fib2<mas[i][j])                               //вычисление чисел фибоначи
+    cout<<endl<<endl;        
+    for(int j=0; j<n; j++)                          //фиксирование столбца элемента
+        for(int k=0; k<n; k++)                          //проход по матрице для сортировки
+            if(k==0)                                        //если текущий элемент находится в нулевой строке
             {
-                fib1+=fib2;                                     //след число
-                fib2+=fib1;                                     //след через два шага
-                if(fib1>=mas[i][j])                             //остановка если одно из чисел больше или равно элементу
-                    break;                                      
+                for(int h=j+1; h<n; h++)                        
+                    if(mas[k][h]>mas[0][j])
+                        swap(mas[0][j], mas[k][h]);             //перестановка самых больших по величине элементов ТОЛЬКО в нулевую строку методом пузырька
             }
-            if(mas[i][j]==fib1 || mas[i][j]==fib2)              //если элемент равен одному из чисел фибоначчи 
-            {
-                cout<<'('<<i<<"; "<<j<<')'<<' ';            
-                count++;                                        //счетчик чисел фибоначи
-            }
-            fib1=1;                             //подготовка к след иттерации
-            fib2=1;                             //подготовка к след иттерации
-        }
-    cout<<endl<<"Количество чисел фибоначи = "<<count;    
+            else                                                //если текущий элемент НЕ находится в нулевой строке
+                for(int h=0; h<n; h++)                          
+                    if(mas[k][h]>mas[0][j])
+                        swap(mas[0][j], mas[k][h]);             
+    
+    
+    for(int j=1; j<n; j++)
+    {
+        swap(mas[0][j], mas[diag][diag]);                   //последовательная перестановка элементов нулевой строки на глав диагональ
+        diag++;                                                
+    } 
+    
+    for(int i=0; i<n; i++)                      //вывод матрицы
+    {    
+        for(int j=0; j<n; j++)
+            cout<<setw(5)<<mas[i][j];
+        cout<<endl; 
+    }
     return 0;
 }
 
