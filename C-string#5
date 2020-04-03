@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    int n(100), countABC(0), countABA(0);
+    char s[n];
+    cin.getline(s, 100);
+    for(int i=0; i<n-2; i++)                        //проход по строке
+    {
+        if(s[i]=='a' && s[i+1]=='b')                //если 'a' и 'b' стоят последовательно
+            if(s[i+2]=='c')                         //если после 'a' и 'b' стоит 'c'
+            {
+                countABC++;                             //счетчик abc
+                i+=2;                                   //переход к следующим не проверенным символам  
+            }
+            else
+                if(s[i+2]=='a')                         //если после 'a' и 'b' стоит 'a'
+                {
+                    countABA++;
+                    i+=2;
+                }
+    }
+    cout<<"Количество abc = "<<countABC<<endl<<"Количество aba = "<<countABA;
+    return 0;
+}
