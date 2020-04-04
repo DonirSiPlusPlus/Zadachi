@@ -7,7 +7,7 @@ int main()
     int n(100), countABC(0), countABA(0);
     char s[n];
     cin.getline(s, 100);
-    for(int i=0; i<strlen(s); i++)                        //проход по строке
+    for(int i=0; i<strlen(s)-2; i++)                        //проход по строке
     {
         if(s[i]=='a' && s[i+1]=='b')                //если 'a' и 'b' стоят последовательно
             if(s[i+2]=='c')                         //если после 'a' и 'b' стоит 'c'
