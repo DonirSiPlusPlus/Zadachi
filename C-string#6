@@ -1,0 +1,29 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    char s[100];
+    cout<<"Введите строку"<<endl;
+    cin.getline(s, 100);
+    int dlina=strlen(s);                            
+    cout<<"Введите символ"<<endl;
+    char mas[1];
+    cin>>mas[0];                                        //ввод удаляемого символа
+    for(int i=0; i<dlina;)                              //проход по строке
+    {
+        if(s[i]==mas[0])                                //поиск удаляемого символа                          
+        {
+            for(int j=i; j<dlina-1; j++)                
+                s[j]=s[j+1];                            //удаление сдвигом
+            dlina--;                                    //размер новой строки
+        }
+        else
+            i++;                                        //подготовка к след итерации
+    }
+    cout<<"Новая строка"<<endl;
+    for(int i=0; i<dlina; i++)
+        cout<<s[i];
+    return 0;
+}
