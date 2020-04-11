@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string.h>
+#include <ctype.h>
 using namespace std;
 int main()
 {
@@ -7,13 +8,15 @@ int main()
     char s[100];
     cout<<"Введите строку"<<endl;
     cin.getline(s, 100);
-    int dlina=strlen(s);                            
+    int dlina=strlen(s), i(0);                            
     cout<<"Введите символ"<<endl;
-    char mas[1];
-    cin>>mas[0];                                        //ввод удаляемого символа
-    for(int i=0; i<dlina;)                              //проход по строке
+    char del[2];
+    cin.getline(del, 2);                                //ввод удаляемого символа
+    if(isspace(del[0])==true)                           //если удаляемый символ это пробел
+        del[0]=' ';
+    while(i<dlina)                                      //проход по строке
     {
-        if(s[i]==mas[0])                                //поиск удаляемого символа                          
+        if(s[i]==del[0])                                //поиск удаляемого символа                          
         {
             for(int j=i; j<dlina-1; j++)                
                 s[j]=s[j+1];                            //удаление сдвигом
