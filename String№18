@@ -1,0 +1,47 @@
+#include <iostream>
+#include <string>
+using namespace std;
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    string s, word("");
+    int count(0), last, first(0), n(1);
+    cout<<"Введите строку"<<endl;
+    getline(cin, s);  
+    for(int i=0; i<s.size();)
+    {
+        if(s[i+1]==' ' || i+1>=s.size())//если мекущий символ последний в слове или последний в строке
+        {
+            last=i;                     //индекс последнего символа в слове
+            while(last>=first)          //переворот слова
+            {    
+                word+=s[last];          //копирование по одному символу
+                last--;                 //подготовка к след итерации
+            }
+            if(s.substr(first, n)==word)            //проверка слова на перевертыш 
+            {
+                cout<<s.substr(first, n)<<' ';      //вывод перевертыша
+                count++;                            //счетчик перевертышей
+            } 
+            word.clear();                           //очистка строки
+            i++;                                    //индекс пробела после слова
+            while(s[i]==' ' && i<s.size())          //пропуск пробелов после слова
+                i++;
+            first=i;                    //индекс первого символа след слова
+            n=1;                        //подготовка к след итерации
+        }
+        else
+        {     
+            i++;         //подготовка к след итерации
+            n++;        //кол-во букв в слове
+        }                
+    }
+    cout<<endl<<count;
+    return 0;
+}
+/*
+ТЕСТЫ
+"dgdg kekasd lol deed" Вывод: "kek" "lol" "deed" 3
+
+"cerc potop ferf madam    cbce" Вывод: "potop" "madam" 2
+*/
