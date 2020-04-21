@@ -4,31 +4,36 @@ using namespace std;
 int main()
 {
     setlocale(LC_ALL, "rus");
-    string s;
+    string S1, word("");
+    int n(1), first(0);
     cout<<"Введите строку"<<endl;
-    getline(cin, s);
-    int first(0), i(1);
-    while(i<s.size())
-    {   
-        if(s[i]==s[first])                          //поиск букв в слове совпадающих с первой
-        {    
-            while(s[i]!=' ' && i<s.size())          //вычисление первого пробела после слова
+    getline(cin, S1);           
+    for(int i=1; i<S1.size(); i++)          
+    {
+        if(S1[first]==S1[i])                    //поиск совпадений с первой буквой
+        {                      
+            while(S1[i]!=' ' && i<S1.size())    //переход текущего индекса к пробелу
+                { i++; n++; }
+            word+=S1.substr(first, n)+' ';      //копирование слова во вторую строку 
+            while(S1[i]==' ' && i<S1.size())    //пропуск пробелов
                 i++;
-            cout<<s.substr(first, i)<<endl;         //вывод слова 
-            while(s[i]==' ' && i<s.size())          //вычисление первой буквы следующего слова(если стоят несколько пробелов подряд)
-                i++;
-            first=i;                                //первая буква в следующем слове
-            i++;                                    //вторая буква в слове
-        } 
+            first=i; n=1;
+        }
         else
-            i++;
-        if(s[i]==' ')
-        {
-            while(s[i]==' ' && i<s.size())          //вычисление первой буквы следующего слова(если стоят несколько пробелов подряд)
-                i++;
-            first=i;                                //первая буква в следующем слове
-            i++;                                    //вторая буква в слове
-        }    
-    }
+            if(S1[i]==' ')                      //если не найдено совпадений
+            {    
+                while(S1[i]==' ' && i<S1.size())//пропуск пробелов
+                    i++;
+                first=i; n=1;
+            }         
+            else    
+                n++; 
+    }        
+    cout<<"Слова с совпадениями"<<endl<<word; 
     return 0;
 }
+/*
+Тесты
+"fifa  effr  LoL" -> fifa LoL"
+"ref kogk   jef  jebj" -> "kogk jebj"
+*/
