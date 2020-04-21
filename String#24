@@ -4,10 +4,54 @@ using namespace std;
 int main()
 {
     setlocale(LC_ALL, "rus");
-    string S1, word("");
-    int n(1), first(0);
+    string s, sort(""), end("");
+    int n(1), first(0), flag(0);
     cout<<"Введите строку"<<endl;
-    getline(cin, S1);   
-    
+    getline(cin, s);   
+    for(int i=0; i<s.size();)
+    {
+        if(s[i+1]==' ' || i+1==s.size())//если текущий символ последний в слове или последний в строке
+        {
+            if(s[i+1]==' ')             
+            {    
+                i++;                            //индекс пробела после слова
+                while(s[i]==' ' && i<s.size())  //пропуск пробелов после слова
+                    i++;
+            }        
+            if(!flag)                           //если буквы в слове стоят в алфавитном порядке
+                sort+=s.substr(first, n)+' ';   //копирование слова в другую строку
+            flag=0;                             //подготовка к след итерации
+            n=1;                                
+        }
+        else
+        {
+            if(s[i]<s[i+1])                     //проверка слова на алфавитный порядок букв      
+                flag=1;                         //флажок
+            n++;                                //кол-во букв в слове
+            i++;    
+        }    
+    }
+    int rpoz=sort.rfind(' ')+1;                 //индекс первой буквы последнего слова
+    end+=sort.substr(rpoz);                     //копирование последнего слова в другой строке
+    for(int i=0; i<sort.size()-rpoz;)   
+    {
+        if(sort[first]>end[0])                      //поиск последнего слова в лексик. порядке
+        {
+            n++;                                //кол-во букв в слове
+            end.clear();                        //очистка строки
+            while(sort[i]!=' ' && i<sort.size()-rpoz)//пропуск слова
+                { i++; n++; }
+            end+=sort.substr(first, n);         //копирование нового слова
+            first=i++;                          //индекс первой буквы след слова
+            i+=2;                               //индекс второй буквы след слова
+        }
+        else
+        {
+            while(sort[i]!=' ' && i<sort.size()-rpoz)
+                i++; 
+            first=i++; 
+            i+=2;    
+        }    
+    }
     return 0;
 }
