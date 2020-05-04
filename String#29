@@ -1,0 +1,56 @@
+#include <iostream>
+#include <string>
+using namespace std;
+int main()
+{
+    setlocale(LC_ALL, "rus");               
+    string s, word("");
+    int n(1), first(0), flag(0);            
+    cout<<"Введите строку"<<endl;
+    getline(cin, s);   
+    for(int i=0; i<s.size(); i++)
+    {
+        if(s[i+1]==' ' || i+1>=s.size())    //если текущий символ последний в слове или в строке
+        {   
+            int perviy, dlina;              //аналог first и n для  
+            word+=s.substr(first, n);       //копирование текущего слова в другую строку
+            
+            perviy=0; dlina=0;                      //нач значения для поиска повторений
+            for(int j=0; j<first; j++)              //поиск повторений от начала строки до текущего слова
+            {
+                while(s[j]!=' ' && j<s.size())      //пропуск слова
+                    { j++; dlina++; }               //счет букв в слове
+                if(s.substr(perviy, dlina)==word)
+                    { flag=1; break; }              //найдено совпадение и остановка поиска
+                while(s[j]==' ' && j<s.size())      //пропуск пробелов
+                    j++;    
+                perviy=j; dlina=1;    
+            }  
+            
+            i++;                            //индекс пробела после текущего слова
+            while(s[i]==' ' && i<s.size())  //пропуск пробелов
+                i++;
+            first=i; n=2;                   //индекс первой буквы и кол-во букв след слова
+            
+            perviy=first; dlina=0;                  //нач значения для поиска повторений
+            for(int j=first; j<s.size(); j++)       //поиск повторений от текущего слова до конца строки
+            {
+                while(s[j]!=' ' && j<s.size())      //пропуск слова
+                    { j++; dlina++; }               //счет букв в слове
+                if(s.substr(perviy, dlina)==word)   
+                    { flag=1; break; }              //найдено совпадение и остановка поиска
+                while(s[j]==' ' && j<s.size())      //пропуск пробелов
+                    j++;    
+                perviy=j; dlina=1;                  
+            }
+            
+            if(!flag)
+                cout<<word<<endl;           //вывод слова без повторений
+            word.clear();                   //подготовка к следующему копированию
+            flag=0;
+        }
+        else
+            n++;    //счёт букв в слове
+    }    
+    return 0;
+}
