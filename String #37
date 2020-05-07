@@ -1,0 +1,18 @@
+#include <iostream>
+#include <string>
+using namespace std;
+int main()
+{
+    setlocale(LC_ALL, "rus");               
+    string s, word("");
+    int n(1), first(0), flag(0);            
+    cout<<"Введите строку"<<endl;
+    getline(cin, s);   
+    for(int i=0; i<s.size(); i++)
+    {
+        if(s[i]==' ' || i>=s.size())    //если текущий символ последний в слове или в строке
+        
+        for(int j=s.size()-1; j>=i; j--)
+    }    
+    return 0;
+}
