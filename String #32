@@ -13,8 +13,10 @@ int main()
         if(s[i+1]==' ' || i+1>=s.size())    //если текущий символ последний в слове или в строке
         {   
             int perviy(0), dlina(0);        //аналог first и n для поиска совпадений 
-            word.replace(0, word.size(), s, first, n);//вставка нового слова на замену предыдущему
+            if(word.empty()==true) word.insert(0, s, first, n);//первое скопированное слово
             
+            else word.replace(0, word.size(), s, first, n);//вставка нового слова на замену предыдущему
+                
             for(int j=0; j<first; j++)              //поиск повторений от начала строки до текущего слова
             {
                 while(s[j]!=' ' && j<first)         //пропуск слова
