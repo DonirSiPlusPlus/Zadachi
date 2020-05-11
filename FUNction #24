@@ -1,0 +1,61 @@
+#include <iostream>
+#include <math.h>
+#include <stdlib.h>
+#include <time.h>
+#include <iomanip>
+using namespace std;
+int diff (int a)
+{
+    int count(1), numbers[10];   //count-количество разных цифр в числе; numbers-массив разных цифр числа
+    numbers[0]=a%10;            //сохранение последней цифры числа
+    a/=10;                      //подготовка к обработке числа
+    while(fabs(a)>0)
+    {
+        int f=0;
+        for(int j=0; j<count; j++)                  //сравнение с предыдущими цифрами
+            if(a%10==numbers[j]) { f=1; break; }    //найдена цифра которая уже встречалась
+        if(!f) { numbers[count]=a%10; count++; }    //найдена цифра ранее не встречавшаяся
+        a/=10;                                      //подготовка к след итерации
+    }   
+    return count;
+}
+int main()
+{
+    int A[100][100], n, m, mas[100];
+    cin>>n>>m;
+    cout<<"Matrix"<<endl;
+    srand(time(NULL));
+    for(int i=0; i<n; i++)          //заполнение матрицы
+    {   
+        for(int j=0; j<m; j++)
+        {
+            A[i][j]=rand()%20000-10000;     //[-9999; 9999]
+            cout<<setw(8)<<A[i][j]<<'('<<diff(A[i][j])<<')';
+        }
+        cout<<endl;        
+    }
+    
+    for(int i=0; i<n; i++)                          
+    {    
+        for(int j=0; j<m; j++)
+            mas[j]=diff(A[i][j]);               //сохранение количества разных цифр каждого элемента в одномерном массиве
+        for(int j=0; j<m; j++)                  //сортировка строки матрицы методом выбора с помощью одномерного массива
+        {
+            int naim=j;                         //локальный минимум в неотсортированной части
+            for(int k=j+1; k<m; k++)
+                if(mas[naim]>mas[k])            //поиск минимума в неотсортирванной части 
+                    naim=k;
+            swap(mas[naim], mas[j]);            //перестановка элементов одномерного массива      
+            swap(A[i][naim], A[i][j]);          //перестановка в строке матрицы
+        }
+    }
+    cout<<endl<<"---------------------------------------------------"<<endl;
+    
+    for(int i=0; i<n; i++)                          //вывод матрицы      
+    {   
+        for(int j=0; j<m; j++)
+            cout<<setw(8)<<A[i][j]<<'('<<diff(A[i][j])<<')';
+        cout<<endl;        
+    }     
+    return 0;
+}
