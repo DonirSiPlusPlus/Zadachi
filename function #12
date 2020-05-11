@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+double drob(double a, int b)
+{
+    int k(2);
+    double y(1);
+    if(b==3)                
+        k=4;                //нач значение третьей скобки 
+    for(int i=0; i<4; i++)  
+    {
+        y=k/(a+y);          //общая формула для вычисления
+        k+=b;               //подготовка к след итерации
+    }
+    return y;
+}
+int main()
+{
+    double x;
+    cin>>x;
+    cout<<drob(x, 2)*drob(x*x, 1)*drob(2*x, 3);
+    return 0;
+}
