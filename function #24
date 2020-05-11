@@ -1,0 +1,40 @@
+#include <iostream>
+#include <math.h>
+#include <stdlib.h>
+#include <time.h>
+#include <iomanip>
+using namespace std;
+differ(int a)
+{
+    int count(1), i(1), numbers[11];    //i-количество разных цифр в числе; numbers-массив различных цифр в числе
+    numbers[0]=a%10;            //сохранение последней цифры числа
+    a/=10;                      //подготовка к обработке числа
+    while(a>0)
+    {
+        for(int j=0; j<i; j++)
+        {
+            int flag=0;
+            if(a%10==numbers[j]) { f=1; break; }    //найдена цифра которое уже встречалось
+        }
+        if(!f) { numbers[i]=a%10; i++; count++; }   //найдена цифра ранее не встречавшаяся
+        a/=10;                                      //подготовка к след итерации
+    }       
+}
+int main()
+{
+    int mas[100][100], n, m;
+    cin>>n>>m;
+    cout<<"Matrix"<<endl;
+    srand(time(NULL));
+    for(int i=0; i<n; i++)                       //заполнение матрицы
+    {   
+        for(int j=0; j<m; j++)
+        {
+            mas[i][j]=rand()%200-100;            //[-99; 99]
+            cout<<setw(5)<<mas[i][j];
+        }
+        cout<<endl;        
+    }
+    
+    return 0;
+}
