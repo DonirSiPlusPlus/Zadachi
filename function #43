@@ -1,0 +1,54 @@
+#include <iostream>
+#include <string>
+using namespace std;
+bool transf(string a, string b) 
+{
+    if(a.size()!=b.size())  
+        return false;               //разная длина слов
+    else
+    {
+        int flag(0);
+        for(int i=0; i<a.size(); i++)       //фиксирование буквы первого слова      
+        {
+            for(int j=0; j<b.size(); j++)   //поиск такой же буквы во втором слове
+                if(a[i]==b[j])
+                    { flag=1; break; }      //найдена буква
+            if(flag==0)                     
+                return false;               //буква не найдена
+            flag=0;
+        }
+        return true;
+    }
+}
+int main()
+{
+    setlocale(LC_ALL, "rus");               
+    string s, slova("");
+    cout<<"Введите строку"<<endl;
+    getline(cin, s);
+    int n(1), i(s.find(' '));
+    while(s[i]==' ' && i<s.size())      //пропуск пробелов
+        i++;
+    int first=i;                        //индекс первой буквы второго слова 
+    for(; i<s.size(); i++)
+    {
+        if(s[i+1]==' ' || i+1>=s.size())        //если текущий символ последний в слове или в строке
+        { 
+            if(transf(s.substr(0, s.find(' ')), s.substr(first, n))==true)
+            {
+                slova+=s.substr(first, n)+' ';  //копирование найденого слова в другую строку
+                s.erase(first-1, n+1);          //удаление найденого слова из исходной строки
+                i-=n;                           //возврат назад из-за удаления
+            }
+            else i++;                       //индекс пробела после текущего слова
+            while(s[i]==' ' && i<s.size())  //пропуск пробелов
+                i++;
+            first=i; n=2;                   //индекс первой буквы и кол-во букв след слова
+        }
+        else
+            n++;
+    }    
+    s.insert(s.find(' ')+1, slova);         //вставка найденых слов после первого слова
+    cout<<"Новая строка"<<endl<<s;
+    return 0;
+}
