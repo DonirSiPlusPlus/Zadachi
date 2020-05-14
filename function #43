@@ -7,16 +7,11 @@ bool transf(string a, string b)
         return false;               //разная длина слов
     else
     {
-        int flag(0);
-        for(int i=0; i<a.size(); i++)       //фиксирование буквы первого слова      
-        {
-            for(int j=0; j<b.size(); j++)   //поиск такой же буквы во втором слове
-                if(a[i]==b[j])
-                    { flag=1; break; }      //найдена буква
-            if(flag==0)                     
-                return false;               //буква не найдена
-            flag=0;
-        }
+        for(int i=0; i<a.size(); i++)       
+            if(b.find(a[i])==-1)
+                return false;
+            else
+                b.erase(b.find(a[i]), 1);
         return true;
     }
 }
@@ -47,8 +42,13 @@ int main()
         }
         else
             n++;
-    }    
-    s.insert(s.find(' ')+1, slova);         //вставка найденых слов после первого слова
-    cout<<"Новая строка"<<endl<<s;
+    }
+    if(slova.empty()==false)                    //если были найдены слова
+    {   
+    	s.insert(s.find(' ')+1, slova);         //вставка найденых слов после первого слова
+    	cout<<"Новая строка"<<endl<<s;
+    }
+    else
+	    cout<<"Слова не найдены"<<endl;
     return 0;
 }
