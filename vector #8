@@ -1,0 +1,74 @@
+#include <iostream>
+#include <vector> 
+#include <stdlib.h>
+#include <time.h>
+#include <iomanip>
+using namespace std;
+bool simple (int v)
+{
+    for(int i=2; i<=v/2; i++)       //поиск делителей числа
+        if(v%i==0)              
+            return false;           //найден делитель
+    return true;
+}
+int main()
+{
+    setlocale(LC_ALL, "rus");   
+    int n, m, numb1(-1), numb2(-1);
+    cin>>n>>m;
+    vector <int> a(n), b(m), c;
+    srand(time(NULL));
+    cout<<"Векторы"<<endl;
+    for(int i=0; i<n; i++)              //наполнение первого вектора
+    {
+        a[i]=rand()%200-100;            //[-99; 99]
+        cout<<setw(5)<<a[i];
+    }
+    cout<<endl;
+    for(int i=0; i<m; i++)              //наполнение второго вектора
+    {
+        b[i]=rand()%200-100;            //[-99; 99]
+        cout<<setw(5)<<b[i];
+    }
+    for(int i=0; i<a.size(); i++)       //вставка положительных значений из первого вектора в "общий" вектор
+        if(a[i]>0)
+            c.push_back(a[i]); 
+    for(int i=0; i<b.size(); i++)       //вставка положительных значений из второго вектора в "Общий" вектор
+        if(b[i]>0)
+            c.push_back(b[i]); 
+    if(c.empty()==false)
+    {
+        cout<<endl<<"Общий вектор"<<endl;
+        for(int i=0; i<c.size(); i++)       //вывод общего вектора
+            if(simple(c[i])==true)
+                cout<<setw(5)<<c[i]<<'*';
+            else
+                cout<<setw(5)<<c[i];
+        for(int i=0; i<c.size(); i++)       //поиск простого числа в векторе
+            if(simple(c[i])==true)
+            {
+                numb1=i;                    //индекс первого по порядку простого числа
+                for(int j=c.size()-1; j>numb1; j--)     //поиск простого числа в векторе с конца
+                    if(simple(c[j])==true)
+                    { 
+                        numb2=j;                        //индекс первого простого числа с конца
+                        if((numb2-numb1)!=1)              //если числа не стоят рядом
+                        {   
+                            double sum(0);
+                            for(int f=numb1+1; f<numb2; f++) //накопление значений между простыми числами
+                                sum+=c[f];                  
+                            cout<<endl<<"Среднее арифметическое между простыми числами = "<<sum/2;    
+                        }
+                        else
+                            cout<<endl<<"NO"<<endl;     //простые числа стоят рядом
+                        break;                          //остановка поиска второго простого числа     
+                    }
+                if(numb2==-1)                           //если не найдено второе простое число
+                    cout<<endl<<"NO"<<endl;
+                break;                                  //остановка поиска простого числа   
+            }
+        if(numb1==-1)                       //если простых чисел нет в векторе
+            cout<<endl<<"NO"<<endl;         
+    }
+    return 0;
+}
