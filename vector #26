@@ -2,7 +2,6 @@
 #include <vector> 
 #include <stdlib.h>
 #include <time.h>
-#include <iomanip>
 using namespace std;
 int main()
 {
@@ -10,25 +9,27 @@ int main()
     int n, x;
     cin>>n;
     vector <int> a(n);
+    vector <int>:: iterator p;
     srand(time(NULL));
-    for(int i=0; i<a.size(); i++)
-        a[i]=rand()%200-100;                            //[-99; 99]
+    for(p=a.begin(); p!=a.end(); ++p) 
+        *p=rand()%200-100;                              //[-99; 99]
         
-    for(int i=1; i<a.size(); i++)                       //сортировка вектора методом вставок
-	    for(int j=i; j>0 && a[j-1]>a[j]; j--) 
-		    swap(a[j-1], a[j]);   
-	cout<<"Вектор"<<endl;
-    for(int i=0; i<a.size(); i++)                       //вывод отсортированного вектора
-        cout<<setw(5)<<a[i];
+    for(p=a.begin()+1; p!=a.end(); ++p)                 //сортировка вектора методом вставок
+	    for(vector <int>:: iterator i=p; i!=a.begin() && *(i-1)>*i; --i) 
+		    swap(*(i-1), *i);   
+		    
+    cout<<"Вектор"<<endl;
+    for(p=a.begin(); p!=a.end(); ++p)                   //вывод отсортированного вектора
+        cout<<*p<<' ';
         
     cout<<endl<<"Введите новый элемент"<<endl;          
     cin>>x; a.push_back(x);                             //ввод и вставка (в конец вектора) нового элемнта
     
-    for(int i=a.size()-1; i>0 && a[i]<a[i-1]; i--)      //поиск места для нового элемента (сортировка)
-        swap(a[i-1], a[i]);      
+    for(p=a.end()-1; p!=a.begin() && *p<*(p-1); --p)    //поиск места для нового элемента (сортировка)
+        swap(*(p-1), *p);      
     
     cout<<"Новый вектор"<<endl;
-    for(int i=0; i<a.size(); i++)
-        cout<<setw(5)<<a[i];
+    for(p=a.begin(); p!=a.end(); ++p)                     
+        cout<<*p<<' ';
     return 0;
 }
