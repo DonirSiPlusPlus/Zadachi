@@ -1,0 +1,31 @@
+#include <iostream>
+#include <vector> 
+#include <stdlib.h>
+#include <time.h>
+#include <iomanip>
+using namespace std;
+int main()
+{
+    setlocale(LC_ALL, "rus");   
+    int n;
+    cin>>n;
+    vector <int> a(n);
+    vector <int>:: iterator p;
+    srand(time(NULL));
+    cout<<"Вектор"<<endl;
+    for(p=a.begin(); p!=a.end(); ++p)
+    {
+        *p=rand()%19-9;                              //[-9; 9]
+        cout<<setw(3)<<*p;
+    }
+    for(p=a.begin(); p!=a.end()-1; ++p)                         //фиксирование элемента
+        for(vector <int>:: iterator i=p+1; i!=a.end(); )        //поиск повторений  
+            if(*i==*p)  
+                a.erase(i);                                     //удаление повторений
+            else
+                ++i;                                            
+    cout<<endl<<"Новый вектор"<<endl;
+    for(p=a.begin(); p!=a.end(); ++p)                     
+        cout<<setw(3)<<*p;
+    return 0;
+}
