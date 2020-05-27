@@ -1,0 +1,42 @@
+#include <iostream>
+#include <vector> 
+using namespace std;
+int main()
+{
+    setlocale(LC_ALL, "rus");   
+    int n;
+    vector <int> a;
+    cout<<"Вектор"<<endl;
+    /*while(cin>>n)
+        a.push_back(n);*/
+    while(n!=3)              //наполнение  вектора
+    {
+        cin>>n;
+        a.push_back(n);
+    }    
+    int naim(0), naib(0);
+    for(int i=1; i<a.size(); i++)               //поиск максимума и минимума            
+        if(a[i]>a[naib])
+            naib=i;                             //индекс максимума
+        else
+            if(a[i]<a[naim])
+                naim=i;                         //индекс минимума
+                
+    if(naim-naib!=1 && naib-naim!=1)                        //если максимум и минимум стоят не рядом   
+    {
+        if(naib>naim)
+            for(int i=naim+2; i<naib; i++)                  //сортировка от минимума до максимума
+	            for(int k=i; k>0 && a[k-1]>a[k]; k--) 
+		   	        swap(a[k-1], a[k]);
+        else
+            for(int i=naib+2; i<naim; i++)                  //сортировка от максимума до минимума  
+	            for(int k=i; k>0 && a[k-1]<a[k]; k--) 
+		   	        swap(a[k-1], a[k]);
+		cout<<"Новый вектор"<<endl;
+        for(int i=0; i<a.size(); i++)                      
+            cout<<a[i]<<' ';  	
+    }
+    else
+		cout<<"Максимум и минимум cтоят рядом"<<endl;  
+    return 0;
+}
