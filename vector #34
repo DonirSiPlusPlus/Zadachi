@@ -4,7 +4,7 @@
 #include <time.h>
 #include <iomanip>
 using namespace std;
-void sort(vector<int>& v)                       //функция сортировки вектора вставками
+void sort(vector<int>& v)                       //функция сортировки вектора 
 {
     for(int i=1; i<v.size(); i++)                  
 	   for(int j=i; j>0 && v[j-1]>v[j]; j--) 
@@ -19,7 +19,7 @@ int main()
     srand(time(NULL));
     for(int i=0; i<a.size(); i++)               //наполнение первого вектора
         a[i]=rand()%199-99;                     //[-99; 99]
-    for(int i=0; i<b.size(); i++)               //наполнение первого вектора
+    for(int i=0; i<b.size(); i++)               //наполнение второго вектора
         b[i]=rand()%199-99;     
     sort(a); sort(b);                           //сортировка двух векторов
     cout<<"Первый вектор"<<endl;
@@ -31,13 +31,13 @@ int main()
     vector <int>:: iterator p=a.begin(), first=b.begin(), last=b.end(); //итераторы для вставки вектора в вектор
     a.insert(p, first, last);                   //склейка двух векторов
     sort(a);                                    //сортировка общего вектора
-   /* for(int i=0; i<b.size(); i++)      
+    /*for(int i=0; i<b.size(); i++)      
     {
         a.push_back(b[i]);   
         for(int j=a.size()-1; j>0 && a[j]<a[j-1]; j--)    //поиск места для нового элемента (сортировка)
             swap(a[j-1], a[j]);
-    }  */  
-	  cout<<endl<<"Общий вектор"<<endl;
+    }  */
+	cout<<endl<<"Общий вектор"<<endl;
         for(int i=0; i<a.size(); i++)                      
             cout<<setw(5)<<a[i];
     return 0;
