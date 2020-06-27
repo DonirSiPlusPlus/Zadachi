@@ -1,0 +1,65 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+int main()
+{                   
+    setlocale(LC_ALL, "rus");               
+    vector<char> s;
+    char x;
+    int maxcount(1), count(0), flag(0);            
+    cout<<"Введите строку"<<endl;
+    while(cin>>x)
+        s.push_back(x);
+    vector <char>:: iterator i, j, first=s.begin(), last;
+    
+    for (i = s.begin()+1; i < s.end(); ++i)
+        if(*i==' ' || i >= s.end())       //если текущий символ последний в слове или в строке
+        {
+            if(count>maxcount)
+                maxcount=count; 
+            count=0;
+            i++;                                //индекс пробела после текущего слова
+            while(*i==' ' && *i<s.size())       //пропуск пробелов
+                i++;
+            first=i;                            //
+        }
+        else
+        {
+            for(j=first; j<i; ++j)
+                if(*i==*j)
+                    { flag=1; break; }
+            if(flag)    
+                count++; 
+            else
+                flag=0;
+        }
+        
+    first=s.begin();
+    for (i = s.begin(); i <s.end(); ++i)
+        if(*i==' ' || i >= s.end())       //если текущий символ последний в слове или в строке
+        {
+            last=i;
+            if(count==maxcount)
+               s.erase(first, last);
+            count=0;
+            while(*i==' ' && *i<s.size())       //пропуск пробелов
+                i++;
+            first=i;                            //
+        }
+        else
+        {
+            for(j=first; j<i; ++j)
+                if(*i==*j)
+                    { flag=1; break; }
+            if(flag)    
+                count++; 
+            else
+                flag=0;
+        }
+        
+    cout<<"Новая строка"<<endl;
+    for (i = s.begin(); i <s.end(); ++i)
+        cout<<*i;
+    cout<<endl;
+    return 0;
+}
