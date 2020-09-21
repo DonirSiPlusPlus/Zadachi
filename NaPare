@@ -1,0 +1,40 @@
+#include <iomanip>
+#include <fstream>
+#include <string>
+using namespace std;
+struct books
+{
+    string fio;
+    string name;
+    int year;
+};
+int main()
+{
+    fstream f("Books.txt");
+    if(f)
+    {
+        vector<books> knigi;
+        books x;
+        string s;
+        int mn(3000);
+        while(!f.eof())
+        {
+            getline(f, x.fio);
+            getline(f, x.name);
+            f>>x.year;
+            getline(f, s);
+            knigi.push_back(x);
+        }
+        for(int j=0; j<knigi.size(); j++)
+            if(knigi[j].year<mn)
+                mn=knigi[j].year;
+
+        for(int j=0; j<knigi.size(); j++)
+            if(knigi[j].year==mn)
+                cout<<setw(20)<<knigi[j].fio<<setw(20)<<knigi[j].name<<setw(20)<<knigi[j].year<<endl;
+        f.close();
+    }
+    else
+        cout<<"File not found";
+    return 0;
+}
