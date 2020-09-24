@@ -27,7 +27,7 @@ int main()
             getline(f, s);
             knigi.push_back(x);
         }
-        //Задание 2
+        /*//Задание 2
         for (int i = 0; i < knigi.size(); i++)  //проход по названиям книг
         {
             int n(0); //счетчик слов в названии
@@ -46,16 +46,22 @@ int main()
                 }
                 else
                     j++;
-        }
+        }*/
 
         /* Задание 1
         for (int j = 0; j < knigi.size(); j++)
             if (knigi[j].year < mn)
                 mn = knigi[j].year;*/
 
-        //for (int j = 0; j < knigi.size(); j++)
+        for (int i = 1; i < knigi.size(); i++)
+            for (int j = i; j > 0 && knigi[j - 1].fio[0] > knigi[j].fio[0]; j--)
+                swap(knigi[j - 1], knigi[j]);
+
+        for (int j = 0; j < knigi.size(); j++)
         //    if (knigi[j].year == mn)   //для зад1
-         //       cout << setw(20) << knigi[j].fio << setw(20) << knigi[j].name << setw(8) << knigi[j].year << endl;
+                cout << setw(20) << knigi[j].fio << setw(30) << knigi[j].name << setw(8) << knigi[j].year << endl;
+
+        
         f.close();
     }
     else
