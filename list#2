@@ -1,0 +1,32 @@
+#include <iostream>
+#include <list>
+using namespace std;
+int main()
+{
+	list<int> D;
+	int n;
+	double sred(0);
+
+	while (cin >> n)
+	{
+		D.push_back(n);
+		sred += n;
+	}
+	sred /= D.size();		//среднее значение
+	list<int>::iterator i = D.begin(), j = D.begin(); ++i;
+	while (i != D.end())
+		if (*i < sred)			//если текущей элемент меньше среднего
+		{
+			D.insert(j, *i);	//вставка значения текущего элемента в начало 
+			i = D.erase(i);		//удаление текущего элемента
+		}
+		else
+			++i;
+
+	if (*j < sred)				//если изначально первый элемент был меньше среднего
+		{ D.insert(D.begin(), *j); D.erase(j); }
+
+	for (i = D.begin(); i != D.end(); ++i)
+		cout << *i << ' ';
+	return 0;
+}
