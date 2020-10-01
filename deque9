@@ -1,0 +1,29 @@
+#include <iostream>
+#include <deque>
+#include <string>
+using namespace std;
+int main()
+{
+	deque<string> D;
+	string s, x;
+	cout << "Vvedite new book" << endl;
+	getline (cin, x);
+	cout << "Vvedite deque" << endl;
+	while (getline (cin, s))
+		D.push_back(s);
+
+    /*for(int i=1; i<D.size(); i++)
+	   for(int j=i; j>0 && D[j-1]>D[j]; j--)
+		  swap(D[j-1], D[j]);*/
+
+	D.push_back(x);
+
+	for (int i = D.size() - 1; i > 0 && D[i - 1] > D[i]; i--)  //сортировка одного элемента методом вставок
+	{
+	    
+		swap(D[i - 1], D[i]);
+	}
+	for (int i = 0; i<D.size(); i++)
+		cout << D[i] <<endl;
+	return 0;
+}
