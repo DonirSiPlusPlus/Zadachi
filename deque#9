@@ -1,0 +1,50 @@
+#include <iostream>
+#include <deque> 
+#include <stdlib.h>
+#include <time.h>
+#include <iomanip>
+using namespace std;
+void sort(deque<int>& v)                       //функция сортировки вектора вставками
+{
+    for (int i = 1; i < v.size(); i++)
+        for (int j = i; j > 0 && v[j - 1] > v[j]; j--)
+            swap(v[j - 1], v[j]);
+}
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    int n, m;
+    cin >> n >> m;
+    deque <int> a(n), b(m), c;
+    srand(time(NULL));
+    for (int i = 0; i < a.size(); i++)               //наполнение первого вектора
+        a[i] = rand() % 199 - 99;                     //[-99; 99]
+    for (int i = 0; i < b.size(); i++)               //наполнение первого вектора
+        b[i] = rand() % 199 - 99;
+    sort(a); sort(b);                           //сортировка двух векторов
+    cout << "Первый deque" << endl;
+    for (int i = 0; i < a.size(); i++)               //вывод первого вектора
+        cout << setw(5) << a[i];
+    cout << endl << "Второй deque" << endl;
+    for (int i = 0; i < b.size(); i++)               //вывод второго вектора
+        cout << setw(5) << b[i];
+
+    int i(0), j(0);
+    while (i < a.size() && j < b.size())                     //пока не скопированы все элементы одного из векторов
+        if (a[i] <= b[j])                                    //копирование меньшего элемента из двух
+            { c.push_back(a[i]); i++; }
+        else
+            { c.push_back(b[j]); j++; }
+
+    if (i >= a.size())                                    //если первый вектор закончился раньше
+        while (j < b.size())                              //копирование оставшихся элементов из второго вектора
+            { c.push_back(b[j]); j++; }                 
+    else
+        while (i < a.size())
+            { c.push_back(a[i]); i++; }
+
+    cout << endl << "Общий deque" << endl;
+    for (int k = 0; k < c.size(); k++)
+        cout << setw(5) << c[k];
+    return 0;
+}
