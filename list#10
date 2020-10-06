@@ -1,0 +1,23 @@
+#include <iostream>
+#include <list>
+using namespace std;
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    list <int> a;
+    int x;
+    cout << "List" << endl;
+    while (cin >> x)
+        a.push_back(x);
+
+    for (list <int>::iterator i = a.end(); i != a.begin(); i--)   //проход по контейнеру с конца 
+    {
+        list <int>::iterator g = i; --g;                          //итератор конца диапазона копирования   
+        i = a.insert(i, a.begin(), g);                            //вставка предшествующей части перед текущим элементом
+    }
+
+    cout << "Новый List" << endl;
+    for (list <int>::iterator i = a.begin(); i != a.end(); ++i)  //вывод контейнера
+        cout << *i << ' ';
+    return 0;
+}
