@@ -1,0 +1,105 @@
+#include <iostream> 
+#include <clocale> 
+#include <cstdlib> 
+#include <iomanip> 
+ 
+ 
+/* 
+n(n>=1000) 
+key 
+ 
+Определеить имеются ли в последовательности элементы значения key используя алгоритмы линейного и бинарного поиска. 
+Оценить вычислительную плотность алгоритма, используя О-символику и подсчетов количества сравнений с элементами 
+последовательности, которые были использованы для поиска(счётчик). 
+ 
+Сортировать. 
+ 
+3 балла. 
+*/ 
+using namespace std; 
+ 
+int main() 
+{ 
+ setlocale(LC_ALL, "rus"); 
+ 
+ int n,countFirst(0),countTwelwe(0),countThird(0),position(-1); 
+ cout«"Введите количество элементов: "; 
+ cin»n; 
+ double a[n]; 
+ cout«"Введите число, которое нужно проверить в последовательности: "; 
+ double key; 
+ cin»key; 
+ bool flag=false; 
+ 
+ for(int i=0;i<n;i++) 
+ { 
+ a[i]=1 + rand()%100; 
+ if(a[i]==key && !flag) 
+ { 
+ flag=true; 
+ } 
+ if(!flag) 
+ countFirst++; 
+ } 
+ for(int i=0;i<n;i++) 
+ { 
+ cout«setw(3)«a[i]«' '; 
+ if((i+1)%10==0) 
+ cout«endl; 
+ } 
+ 
+ string bg; 
+ 
+ if(flag) 
+ { 
+ bg=" "; 
+ }else bg=" не "; 
+ cout«endl«endl«"Число в последовательности со значением key"«bg«"существует!"«endl«"Количество сравнений, оно же и равно позиции элемента в последовательности: "«countFirst«endl«endl; 
+ 
+ for(int i=0;i<n;i++) 
+ for(int j=i;j<n;j++) 
+ if(a[i]>a[j]) 
+ swap(a[i],a[j]); 
+ for(int i=0;i<n;i++) 
+ { 
+ cout«setw(3)«a[i]«' '; 
+ if((i+1)%10==0) 
+ cout«endl; 
+ } 
+ for(int i=0;i<n;i++) 
+ { 
+ if(a[i]!=key) 
+ { 
+ countTwelwe++; 
+ }else break; 
+ } 
+ cout«endl«"Количество проверок линейного поиска: "«countTwelwe«endl; 
+ int i,left(0),right(n-1); 
+ i = right/2; 
+ flag = false; 
+ 
+ int biPosition(-1); 
+ while(left<=right) 
+ { 
+ 
+ if(a[i]<key) 
+ { 
+ left = i+1; 
+ i = (left+right)/2; 
+ countThird++; 
+ }else{ 
+ if(a[i]>key) 
+ { 
+ right = i-1; 
+ i=(left+right)/2; 
+ countThird++; 
+ }else {biPosition = i; break;} 
+ } 
+ } 
+ cout«"Количество проверок бинарного поиска: "«countThird«endl; 
+ if(biPosition != -1) 
+ cout«"Позиция элемента: "«biPosition«endl; 
+ else 
+ cout«"Такого элемента не существует!"«endl; 
+ return 0; 
+}
